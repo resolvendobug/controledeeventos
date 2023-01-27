@@ -1,15 +1,29 @@
 using Microsoft.EntityFrameworkCore;
 using ProEventos.API.Data;
 
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.AllowAnyHeader()
+                                 .AllowAnyMethod()
+                                 .AllowAnyOrigin();
+                      });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("AppDb");
+
 
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 
 builder.Services.AddDbContext<DataContext>(
     context => context.UseSqlite(connectionString)    
@@ -29,11 +43,10 @@ if (app.Environment.IsDevelopment())
 }else{
     app.UseHttpsRedirection();
 }
-
-
-
+app.UseStaticFiles();
+app.UseRouting();
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();
