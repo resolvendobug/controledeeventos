@@ -485,6 +485,8 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
+Front/ProEventos-App/.angular
+Front/ProEventos-App/.angular/cache
 .angular/cache
 .sass-cache/
 /connect.lock
@@ -496,3 +498,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+Front/ProEventos-App/.angular/cache/15.1.3/
