@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ProEventos.API.Data;
+using ProEventos.Persistence;
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -25,7 +25,7 @@ var connectionString = builder.Configuration.GetConnectionString("AppDb");
 builder.Services.AddControllers();
 
 
-builder.Services.AddDbContext<DataContext>(
+builder.Services.AddDbContext<ProEventosContext>(
     context => context.UseSqlite(connectionString)    
 );
 
