@@ -7,10 +7,10 @@ using ProEventos.Domain;
 
 namespace ProEventos.Persistence
 {
-    public class EventoPresist : IEventoPersist
+    public class EventoPersist : IEventoPersist
     {
         private readonly ProEventosContext _context;
-        public EventoPresist(ProEventosContext context)
+        public EventoPersist(ProEventosContext context)
         {
             this._context = context;
 

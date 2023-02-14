@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using ProEventos.Application;
+using ProEventos.Application.Contratos;
 using ProEventos.Persistence;
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -23,7 +25,9 @@ var connectionString = builder.Configuration.GetConnectionString("AppDb");
 // Add services to the container.
 
 builder.Services.AddControllers();
-
+builder.Services.AddScoped<IEventoService , EventoService>();
+builder.Services.AddScoped<IGeralPersist, GeralPersist>();
+builder.Services.AddScoped<IEventoPersist, EventoPersist>();
 
 builder.Services.AddDbContext<ProEventosContext>(
     context => context.UseSqlite(connectionString)    
